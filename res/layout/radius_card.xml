@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/card_outer" >
+    <RelativeLayout
+        android:id="@+id/inner_frame"
+        style="@style/card_inner" >
+
+        <RelativeLayout
+            android:id="@+id/titleFrame"
+            style="@style/card_title_frame" >
+
+            <ImageButton
+                android:id="@android:id/button1"
+                style="@style/card_popup_anchor" />
+        </RelativeLayout>
+
+        <LinearLayout
+            style="?android:attr/buttonBarStyle"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:measureWithLargestChild="true"
+            android:orientation="horizontal"
+            android:paddingTop="0dp" >
+
+            <Button
+                android:id="@+id/set_radius"
+                style="?android:attr/buttonBarButtonStyle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/change_radius"
+                android:textSize="@dimen/card_content" />
+
+            <Button
+                android:id="@+id/query"
+                style="?android:attr/buttonBarButtonStyle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/query"
+                android:textSize="@dimen/card_content" />
+        </LinearLayout>
+    </RelativeLayout>
+
+    <ImageView style="@style/card_shadow" />
+
+</LinearLayout>

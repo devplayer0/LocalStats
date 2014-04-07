@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/card_outer" >
+    <RelativeLayout
+        android:id="@+id/inner_frame"
+        style="@style/card_inner" >
+        <ImageView
+            android:id="@android:id/icon"
+            style="@style/card_thumbnail" />
+        <RelativeLayout
+            android:id="@+id/titleFrame"
+            style="@style/card_title_frame" >
+            <TextView
+                android:id="@android:id/title"
+                style="@style/card_title" />
+            <ImageButton
+                android:id="@android:id/button1"
+                style="@style/card_popup_anchor" />
+        </RelativeLayout>
+        <LinearLayout
+            android:id="@+id/values_table"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+            <com.afollestad.cardsui.LightItalicTextView
+                android:id="@+id/dataset"
+                style="@style/card_header_title" />
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/chart_table"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/values_table"
+            android:orientation="vertical" >
+            <TextView
+                android:id="@+id/result"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <com.jackos2500.localstats.ui.PieChartView
+                android:id="@+id/results_chart"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+    </RelativeLayout>
+    <ImageView style="@style/card_shadow" />
+</LinearLayout>

@@ -1,0 +1,24 @@
+<resources>
+    <!-- Application theme. -->
+    <style name="AppTheme" parent="android:Theme.Holo.Light.DarkActionBar">
+       	<item name="android:actionBarStyle">@style/LocalStats.ActionBar</item>
+    </style>
+    <style name="LocalStats.NavText" parent="android:TextAppearance.Medium">
+        <item name="android:textSize">21.0sp</item>
+        <item name="android:textColor">@color/nav_normal</item>
+        <item name="android:ellipsize">marquee</item>
+        <item name="android:singleLine">true</item>
+        <!-- <item name="android:fontFamily">sans-serif-light</item> -->
+    </style>
+    <style name="LocalStats.NavText.Selected" parent="@style/LocalStats.NavText">
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/nav_selected</item>
+        <!-- <item name="android:fontFamily">sans-serif</item> -->
+    </style>
+    <!-- ActionBar styles -->
+    <style name="LocalStats.ActionBar"
+           parent="android:Widget.Holo.Light.ActionBar.Solid.Inverse">
+       	<item name="android:icon">@drawable/ic_action_bar_new</item>
+        <item name="android:background">@drawable/action_bar_bg</item>
+    </style>
+</resources>

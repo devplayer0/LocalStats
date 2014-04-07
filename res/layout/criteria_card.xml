@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/card_outer" >
+
+    <RelativeLayout
+        android:id="@+id/inner_frame"
+        style="@style/card_inner" >
+
+        <ImageView
+            android:id="@android:id/icon"
+            style="@style/card_thumbnail" />
+
+        <RelativeLayout
+            android:id="@+id/titleFrame"
+            style="@style/card_title_frame" >
+
+            <TextView
+                android:id="@android:id/title"
+                style="@style/card_title" />
+
+            <ImageButton
+                android:id="@android:id/button1"
+                style="@style/card_popup_anchor" />
+        </RelativeLayout>
+
+        <LinearLayout
+            android:id="@+id/criteria_form"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+			<com.afollestad.cardsui.LightItalicTextView style="@style/card_header_title" android:text="Dataset" />
+            <Spinner
+                android:id="@+id/dataset_spinner"
+                android:layout_height="wrap_content"
+                android:layout_width="fill_parent" />
+        </LinearLayout>
+    </RelativeLayout>
+
+    <ImageView style="@style/card_shadow" />
+
+</LinearLayout>

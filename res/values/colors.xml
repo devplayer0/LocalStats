@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="nav_normal">#ff505050</color>
+    <color name="nav_selected">#ff333333</color>
+    <color name="holo_gray_light">#33999999</color>
+    <color name="nav_background">#fffafafa</color>
+</resources>

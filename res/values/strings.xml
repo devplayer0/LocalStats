@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Some1LikeMe</string>
+    <string name="settings">Settings</string>
+    <string name="cancel">Cancel</string>
+    <string name="gps_required_title">GPS Required</string>
+    <string name="gps_required">GPS is required to use this app. Please use tap the button below to open Location Settings and enable GPS.</string>
+    <string name="datasets_loading">Loading datasets&#8230;</string>
+    <string name="choose_dataset">Choose a dataset</string>
+    <string name="data_loading">Loading data&#8230;</string>
+    <string name="title_activity_card">Cards Demo</string>
+    <string name="action_settings">Settings</string>
+    <string name="cards">Cards</string>
+    <string name="drawer_open">Open navigation drawer</string>
+    <string name="drawer_close">Close navigation drawer</string>
+    <string name="pick_radius">Pick Radius</string>
+    <string name="save">Save</string>
+    <string name="loading">Loading&#8230;</string>
+    <string name="area_retrieve">Retrieving area information</string>
+    <string name="delete">Delete</string>
+    <string name="settings_caching">Caching</string>
+    <string name="cache_size">Cache Size</string>
+    <string name="pick_cache">Pick a cache size:</string>
+    <string name="cache_summary">The size of the data cache in megabytes (MB). Any data downloaded from the backend server is stored in the cache file. If the file goes over the specified size, it will be erased.</string>
+    <string name="ok">OK</string>
+    <string name="save_query">Save Query</string>
+    <string name="enter_query_name">Enter query name:</string>
+    <string name="enter_new_name">Enter new name:</string>
+    <string name="rename">Rename</string>
+    <string name="query">Query</string>
+    <string name="change_radius">Change Radius</string>
+    <string name="rename_query">Rename Query</string>
+    <string name="misc">Miscellaneous</string>
+    <string name="test_mode">GPS test mode</string>
+    <string name="test_mode_summary">When on, the app will use coordinates in the centre of Ireland in place of real GPS data. Useful if you want to test the app\'s functionality but you\'re somewhere where GPS is unavailable, for example inside a building.</string>
+</resources>

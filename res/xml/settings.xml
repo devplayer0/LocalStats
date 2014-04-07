@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen 
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:jackos2500="http://schemas.android.com/apk/res/com.jackos2500.localstats" >
+    <PreferenceCategory 
+        android:title="@string/settings_caching"
+        android:key="settings_caching" >
+        <com.jackos2500.localstats.ui.NumberPickerPreference 
+            android:title="@string/cache_size"
+            android:key="settings_cache_size"
+            android:summary="@string/cache_summary"
+            android:defaultValue="16"
+            android:dialogMessage="@string/pick_cache"
+            jackos2500:maxValue="64" />
+	</PreferenceCategory>
+	<PreferenceCategory 
+	    android:title="@string/misc"
+	    android:key="settings_misc">
+	    <SwitchPreference
+	        android:title="@string/test_mode"
+	        android:key="settings_test_mode"
+	        android:summary="@string/test_mode_summary"
+	        android:defaultValue="false" />
+	</PreferenceCategory>
+</PreferenceScreen>
