@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
+import java.util.UUID;
 
 import android.content.Context;
 import android.view.MenuItem;
@@ -29,6 +30,8 @@ public class CriteriaCard extends Card {
 	private QueryFragment queryFragment;
 	private DataAccess dataAccess;
 	
+	private UUID uuid;
+	
 	private String selectedDataset;
 	
 	private DatasetsAdapter datasetsAdapter;
@@ -48,6 +51,8 @@ public class CriteriaCard extends Card {
 		datasetsAdapter = new DatasetsAdapter(context);
 		dimensions = new ArrayList<String>();
 		valuesAdapters = new HashMap<ValuesAdapter, Integer>();
+		
+		uuid = UUID.randomUUID();
 		
 		dataAccess = MainActivity.dataAccess;
 		dataAccess.loadDatasets(new DatasetsListener() {
@@ -79,7 +84,17 @@ public class CriteriaCard extends Card {
 			}
 		});
 	}
-	
+	public UUID getUUID() {
+		return uuid;
+	}
+	@Override
+	public boolean equalTo(Card other) {
+		if (other instanceof CriteriaCard) {
+			CriteriaCard card = (CriteriaCard)other;
+			return card.getUUID().equals(uuid);
+		}
+		return false;
+	}
 	@Override
 	public int getLayout() {
 		return R.layout.criteria_card;

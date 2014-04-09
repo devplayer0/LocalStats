@@ -7,10 +7,14 @@ import java.util.Map.Entry;
 import java.util.Set;
 
 import android.app.Activity;
+import android.app.Dialog;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
+import android.content.Context;
+import android.content.Intent;
 import android.content.res.Configuration;
+import android.location.LocationManager;
 import android.os.Bundle;
 import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.view.GravityCompat;
@@ -26,14 +30,19 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.GooglePlayServicesUtil;
 import com.jackos2500.localstats.data.DataAccess;
 import com.jackos2500.localstats.data.disk.DataStore;
 import com.jackos2500.localstats.fragment.QueryFragment;
 import com.jackos2500.localstats.fragment.ResultsFragment;
 import com.jackos2500.localstats.fragment.SavedQueriesFragment;
 import com.jackos2500.localstats.fragment.SettingsFragment;
+import com.jackos2500.localstats.ui.Dialogs;
 
 public class MainActivity extends Activity {
+	private final static int CONNECTION_FAIL = 9000;
+	
 	private static final int ITEM_QUERY = 0;
 	private static final int ITEM_SAVED = 1;
 	private static final int ITEM_SETTINGS = 2;
@@ -112,6 +121,34 @@ public class MainActivity extends Activity {
 		if (savedInstanceState == null) {
 			selectItem(0);
 			getActionBar().setTitle(title);
+		}
+		
+		checkGps();
+		servicesAvailable();
+	}
+	private boolean checkGps() {
+		LocationManager locationService = (LocationManager)getSystemService(Context.LOCATION_SERVICE);
+		boolean gps = locationService.isProviderEnabled(LocationManager.GPS_PROVIDER);
+		if (!gps) {
+			new Dialogs.EnableGPSDialogFragment().show(getFragmentManager(), "EnableGPSDialog");
+		}
+		return gps;
+	}
+	private boolean servicesAvailable() {
+		int resultCode = GooglePlayServicesUtil.isGooglePlayServicesAvailable(this);
+		if (resultCode == ConnectionResult.SUCCESS) {
+			return true;
+		}
+		Dialog errorDialog = GooglePlayServicesUtil.getErrorDialog(resultCode, this, CONNECTION_FAIL);
+		errorDialog.show();
+		return false;
+	}
+	@Override
+	public void onActivityResult(int requestCode, int resultCode, Intent data) {
+		switch (requestCode) {
+			case CONNECTION_FAIL:
+				finish();
+				break;
 		}
 	}
 	@Override

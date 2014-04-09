@@ -1,5 +1,7 @@
 package com.jackos2500.localstats.card;
 
+import java.util.UUID;
+
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
@@ -18,6 +20,8 @@ import com.jackos2500.localstats.ui.Dialogs.EditTextDialogFragment.IEditTextDial
 public class SavedQueryCard extends Card implements IEditTextDialog {
 	private static final long serialVersionUID = 1L;
 	
+	private UUID uuid;
+	
 	private SavedQueriesFragment savedQueriesFragment;
 	private String name;
 	private DataQuerySet query;
@@ -29,6 +33,8 @@ public class SavedQueryCard extends Card implements IEditTextDialog {
 		this.savedQueriesFragment = savedQueriesFragment;
 		this.name = name;
 		this.query = query;
+		
+		uuid = UUID.randomUUID();
 		
 		onClickListener = new OnClickListener(savedQueriesFragment);
 		
@@ -58,6 +64,17 @@ public class SavedQueryCard extends Card implements IEditTextDialog {
 	}
 	public OnClickListener getOnClickListener() {
 		return onClickListener;
+	}
+	public UUID getUUID() {
+		return uuid;
+	}
+	@Override
+	public boolean equalTo(Card other) {
+		if (other instanceof SavedQueryCard) {
+			SavedQueryCard card = (SavedQueryCard)other;
+			return card.getUUID().equals(uuid);
+		}
+		return false;
 	}
 	@Override
 	public int getLayout() {

@@ -5,10 +5,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import android.app.Dialog;
 import android.app.Fragment;
 import android.content.Context;
-import android.content.Intent;
 import android.location.Criteria;
 import android.location.Location;
 import android.location.LocationListener;
@@ -21,8 +19,6 @@ import android.widget.Toast;
 
 import com.afollestad.cardsui.CardHeader;
 import com.afollestad.cardsui.CardListView;
-import com.google.android.gms.common.ConnectionResult;
-import com.google.android.gms.common.GooglePlayServicesUtil;
 import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -40,13 +36,11 @@ import com.jackos2500.localstats.card.MapCard;
 import com.jackos2500.localstats.card.RadiusCard;
 import com.jackos2500.localstats.data.IDataLoader.ElectoralDivisionsListener;
 import com.jackos2500.localstats.tasks.ElectoralDivisionsLoadTask;
-import com.jackos2500.localstats.ui.Dialogs;
 import com.jackos2500.localstats.ui.MultiCardAdapter;
 
 public class QueryFragment extends Fragment implements LocationListener, ElectoralDivisionsLoadTask.LocationRetrievable {
 	public static final String DEFAULT_ED = "01001";
 	public static final LatLng CENTER = new LatLng(53.5, -8);
-	private final static int CONNECTION_FAIL = 9000;
 	
 	private LocationManager locationManager;
 	public Location location;
@@ -106,9 +100,6 @@ public class QueryFragment extends Fragment implements LocationListener, Elector
 		polys = new ArrayList<Polygon>();
 		markers = new HashMap<Marker, String>();
 		
-		servicesAvailable();
-		checkGps();
-		
 		locationManager = (LocationManager)getActivity().getSystemService(Context.LOCATION_SERVICE);
 		Criteria criteria = new Criteria();
 		criteria.setAccuracy(Criteria.ACCURACY_FINE);
@@ -126,14 +117,6 @@ public class QueryFragment extends Fragment implements LocationListener, Elector
 			
 			CameraUpdate center = CameraUpdateFactory.newLatLngZoom(CENTER, 6.5f);
 			map.animateCamera(center);
-		}
-	}
-	@Override
-	public void onActivityResult(int requestCode, int resultCode, Intent data) {
-		switch (requestCode) {
-			case CONNECTION_FAIL:
-				getActivity().finish();
-				break;
 		}
 	}
 	@Override
@@ -169,23 +152,6 @@ public class QueryFragment extends Fragment implements LocationListener, Elector
 			map = mapView.getMap();
 		}
 		return map != null;
-	}
-	private boolean checkGps() {
-		LocationManager locationService = (LocationManager)getActivity().getSystemService(Context.LOCATION_SERVICE);
-		boolean gps = locationService.isProviderEnabled(LocationManager.GPS_PROVIDER);
-		if (!gps) {
-			new Dialogs.EnableGPSDialogFragment().show(getFragmentManager(), "EnableGPSDialog");
-		}
-		return gps;
-	}
-	private boolean servicesAvailable() {
-		int resultCode = GooglePlayServicesUtil.isGooglePlayServicesAvailable(getActivity());
-		if (resultCode == ConnectionResult.SUCCESS) {
-			return true;
-		}
-		Dialog errorDialog = GooglePlayServicesUtil.getErrorDialog(resultCode, getActivity(), CONNECTION_FAIL);
-		errorDialog.show();
-		return false;
 	}
 	@Override
 	public void onLocationChanged(Location location) {
